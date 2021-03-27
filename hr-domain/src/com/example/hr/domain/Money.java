@@ -12,6 +12,14 @@ public class Money {
 		this.currency = currency;
 	}
 
+	public double getValue() {
+		return value;
+	}
+
+	public FiatCurrency getCurrency() {
+		return currency;
+	}
+
 	public static Money valueOf(double value, FiatCurrency currency) {
 		// validation
 		Objects.requireNonNull(currency);

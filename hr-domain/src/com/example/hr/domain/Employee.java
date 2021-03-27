@@ -120,6 +120,10 @@ public class Employee {
 			this.salary = Money.valueOf(value, currency);
 			return this;
 		}
+		
+		public Builder salary(double value) {
+			return this.salary(value,FiatCurrency.TL);
+		}
 
 		public Builder birthYear(int year) {
 			this.birthYear = Year.valueOf(year);
