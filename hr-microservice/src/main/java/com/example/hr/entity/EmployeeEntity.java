@@ -31,7 +31,7 @@ public class EmployeeEntity {
 	@Column(name = "style")
 	@Enumerated
 	private JobStyle style;
-	@Column(columnDefinition = "largeblob")
+	@Column(columnDefinition = "longblob")
 	@Lob
 	private byte[] photo;
 
