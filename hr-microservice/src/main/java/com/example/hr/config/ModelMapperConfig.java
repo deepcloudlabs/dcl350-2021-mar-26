@@ -16,6 +16,7 @@ public class ModelMapperConfig {
 	private static final Converter<HireEmployeeRequest,Employee> hireEmployeeRequest2EmployeeConverter = 
 			context -> {
 				var request = context.getSource();
+				System.err.println(request);
 				return new Employee.Builder(TcKimlikNo.valueOf(request.getIdentity()))
 						           .fullname(request.getFirstName(), request.getLastName())
 						           .iban(request.getIban())
@@ -60,10 +61,11 @@ public class ModelMapperConfig {
     			};	
 	@Bean
 	public ModelMapper mapper() {
+		System.err.println("mapper");
 		var modelMapper = new ModelMapper();
-		modelMapper.addConverter(hireEmployeeRequest2EmployeeConverter);
-		modelMapper.addConverter(employee2EmployeeEntityConverter);
-		modelMapper.addConverter(employeeEntity2EmployeeConverter);
+		modelMapper.addConverter(hireEmployeeRequest2EmployeeConverter,HireEmployeeRequest.class,Employee.class);
+		modelMapper.addConverter(employee2EmployeeEntityConverter,Employee.class,EmployeeEntity.class);
+		modelMapper.addConverter(employeeEntity2EmployeeConverter,EmployeeEntity.class,Employee.class);
 		return modelMapper;
 	}
 }

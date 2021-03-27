@@ -20,6 +20,7 @@ public class HrService {
 	
 	public HireEmployeeResponse hireEmployee(HireEmployeeRequest request) {
 		var employee = modelMapper.map(request, Employee.class);
+		System.err.println(employee);
 		hrApplication.hireEmployee(employee);
 		return new HireEmployeeResponse("success");
 	}

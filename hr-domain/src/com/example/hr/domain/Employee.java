@@ -14,6 +14,9 @@ public class Employee {
 	private JobStyle style;
 	private Email email;
 
+	public Employee() {
+	}
+
 	public Employee(Builder builder) {
 		this.kimlikNo = builder.kimlikNo;
 		this.fullname = builder.fullname;
@@ -156,4 +159,12 @@ public class Employee {
 			return new Employee(this);
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Employee [kimlikNo=" + kimlikNo + ", fullname=" + fullname + ", iban=" + iban + ", salary=" + salary
+				+ ", birthYear=" + birthYear + ", department=" + department + ", style=" + style + ", email=" + email
+				+ "]";
+	}
+	
 }
