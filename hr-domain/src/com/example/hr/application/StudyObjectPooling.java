@@ -1,5 +1,6 @@
 package com.example.hr.application;
 
+@SuppressWarnings("unused")
 public class StudyObjectPooling {
 
 	public static void main(String[] args) {

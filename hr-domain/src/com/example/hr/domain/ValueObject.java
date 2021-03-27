@@ -9,8 +9,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
-@Documented
 @Inherited
-public @interface Entity {
-	String identity();
+@Documented
+public @interface ValueObject {
 }
