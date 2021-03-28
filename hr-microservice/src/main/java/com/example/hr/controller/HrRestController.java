@@ -1,7 +1,10 @@
 package com.example.hr.controller;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,15 +42,20 @@ public class HrRestController {
 
 	// DDD -> ACL: Anti-Corruption Layer
 	@PostMapping
-	public HireEmployeeResponse hireEmployee(@RequestBody @Validated HireEmployeeRequest request) {
-		return hrService.hireEmployee(request);
+	public ResponseEntity<HireEmployeeResponse> hireEmployee(@RequestBody @Validated HireEmployeeRequest request) {
+		try {
+			hrService.hireEmployee(request); // throws IllegalArgumentException if fails
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(new HireEmployeeResponse(e.getMessage()));
+		}
+		return ResponseEntity.ok(new HireEmployeeResponse("success"));
 	}
 
 	@DeleteMapping("{identity}")
 	public FireEmployeeResponse fireEmployee(@PathVariable @TcKimlikNo String identity) {
 		return hrService.fireEmployee(identity);
 	}
-	
+
 	@ExceptionHandler(IllegalArgumentException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public RestErrorMessage handleIllegalArgumentException(IllegalArgumentException e) {
