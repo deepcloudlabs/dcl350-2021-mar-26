@@ -1,13 +1,20 @@
 package com.example.hr.boundary;
 
+import javax.validation.constraints.Email;
+
 import com.example.hr.domain.Department;
 import com.example.hr.domain.JobStyle;
+import com.example.hr.validation.Iban;
+import com.example.hr.validation.TcKimlikNo;
 
 public class HireEmployeeRequest {
+	@TcKimlikNo
 	private String identity;
 	private String firstName;
 	private String lastName;
+	@Iban
 	private String iban;
+	@Email
 	private String email;
 	private double salary;
 	private int birthYear;

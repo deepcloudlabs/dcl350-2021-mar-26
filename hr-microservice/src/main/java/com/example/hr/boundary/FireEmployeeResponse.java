@@ -1,4 +1,4 @@
-package com.example.hr.controller;
+package com.example.hr.boundary;
 
 public class FireEmployeeResponse {
 

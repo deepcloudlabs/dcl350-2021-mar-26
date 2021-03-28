@@ -6,21 +6,27 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import com.example.hr.domain.Department;
 import com.example.hr.domain.JobStyle;
+import com.example.hr.validation.Iban;
+import com.example.hr.validation.TcKimlikNo;
 
 @Entity
 @Table(name = "employees")
 public class EmployeeEntity {
 	@Id
+	@TcKimlikNo
 	private String identity;
 	@Column(name = "first_name")
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
 	@Column(unique = true)
+	@Iban
 	private String iban;
+	@Email
 	private String email;
 	private double salary;
 	@Column(name = "birth_year")
