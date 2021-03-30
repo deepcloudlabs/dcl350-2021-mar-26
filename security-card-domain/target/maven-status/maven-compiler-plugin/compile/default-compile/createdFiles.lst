@@ -1,0 +1,13 @@
+com\example\card\event\SecurityCardEvent.class
+com\example\card\domain\TcKimlikNo.class
+com\example\card\event\SecurityCardBlockedEvent.class
+com\example\card\application\StandardSecurityCardApplication.class
+com\example\card\domain\FullName.class
+com\example\card\domain\SecurityCard$Builder.class
+com\example\card\repository\SecurityCardRepository.class
+com\example\card\domain\SecurityCard.class
+com\example\card\application\SecurityCardApplication.class
+com\example\card\domain\CardId.class
+com\example\card\infrastructure\EventPublisher.class
+com\example\card\domain\Photo.class
+com\example\card\infrastructure\SecurityCardPrinterService.class
