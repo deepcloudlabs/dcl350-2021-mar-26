@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.example.hr.application.HrApplication;
 import com.example.hr.application.business.StandardHrApplication;
+import com.example.hr.infrastructure.CardPrinter;
 import com.example.hr.infrastructure.EventPublisher;
 import com.example.hr.repository.EmployeeRepository;
 
@@ -12,7 +13,7 @@ import com.example.hr.repository.EmployeeRepository;
 public class AppConfig {
 
 	@Bean
-	public HrApplication hrApp(EmployeeRepository employeeRepository, EventPublisher eventPublisher) {
-		return new StandardHrApplication(employeeRepository, eventPublisher);
+	public HrApplication hrApp(EmployeeRepository employeeRepository, EventPublisher eventPublisher,CardPrinter cardPrinter) {
+		return new StandardHrApplication(employeeRepository, eventPublisher,cardPrinter);
 	}
 }

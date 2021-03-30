@@ -6,16 +6,20 @@ import com.example.hr.application.HrApplication;
 import com.example.hr.domain.Employee;
 import com.example.hr.domain.TcKimlikNo;
 import com.example.hr.events.EmployeeHiredEvent;
+import com.example.hr.infrastructure.CardPrinter;
 import com.example.hr.infrastructure.EventPublisher;
 import com.example.hr.repository.EmployeeRepository;
 
 public class StandardHrApplication implements HrApplication {
 	private EmployeeRepository employeeRepository;
 	private EventPublisher eventPublisher;
+	private CardPrinter cardPrinter;
 
-	public StandardHrApplication(EmployeeRepository employeeRepository, EventPublisher eventPublisher) {
+	public StandardHrApplication(EmployeeRepository employeeRepository, EventPublisher eventPublisher,
+			CardPrinter cardPrinter) {
 		this.employeeRepository = employeeRepository;
 		this.eventPublisher = eventPublisher;
+		this.cardPrinter = cardPrinter;
 	}
 
 	// use case scenario
@@ -26,6 +30,7 @@ public class StandardHrApplication implements HrApplication {
 		if (employeeRepository.exists(kimlik))
 			throw new IllegalArgumentException("Employee already exists.");
 		var saveEmployee = employeeRepository.save(employee);
+		cardPrinter.printCard(employee);
 		eventPublisher.publish(new EmployeeHiredEvent(kimlik, employee.getEmail()));
 		return saveEmployee;
 	}
