@@ -13,7 +13,7 @@ public class SecurityCardApplicationRabbitAdapter {
 	@Autowired
 	private SecurityCardService securityCardService;
 	
-	@RabbitListener(queues = "???")
+	@RabbitListener(queues = "card-queue")
 	public void listenPrintSecurityCardMessages(PrintSecurityCardMessage message) {
 		securityCardService.printSecurityCard(message);
 	}

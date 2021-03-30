@@ -21,7 +21,7 @@ public class EventPublisherRabbitAdaptor implements EventPublisher {
 	public void publishEvent(SecurityCardEvent event) {
 		try {
 			var json = mapper.writeValueAsBytes(event);
-			rabbitTemplate.convertAndSend("card-exchange", null, json);
+			rabbitTemplate.convertAndSend("event-exchange", null, json);
 		} catch (JsonProcessingException e) {
 			System.err.println("Error: " + e.getMessage());
 		}
