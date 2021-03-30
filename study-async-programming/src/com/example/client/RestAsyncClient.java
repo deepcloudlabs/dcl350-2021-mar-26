@@ -19,7 +19,7 @@ public class RestAsyncClient {
 				                 .header("Accept","application/json")
 				                 .build();
 		var start = System.currentTimeMillis();
-		for (var i=0;i<10;++i) {
+		for (var i=0;i<1_000;++i) {
 			client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
 			  .thenAcceptAsync( response -> {
 				  if(counter.incrementAndGet() == 10) {
