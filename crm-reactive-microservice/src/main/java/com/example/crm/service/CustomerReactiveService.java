@@ -11,4 +11,10 @@ public interface CustomerReactiveService {
 
 	Flux<CustomerDocument> getCustomers(int page, int size);
 
+	Mono<CustomerDocument> addCustomer(CustomerDocument customer);
+
+	Mono<CustomerDocument> updateCustomer(CustomerDocument customer);
+
+	Mono<CustomerDocument> removeByIdentity(String identity);
+
 }

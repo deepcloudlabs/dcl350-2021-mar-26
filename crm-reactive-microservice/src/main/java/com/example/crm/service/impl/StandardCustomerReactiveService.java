@@ -16,7 +16,7 @@ public class StandardCustomerReactiveService implements CustomerReactiveService 
 
 	@Autowired
 	private CustomerDocumentRepository custRepo;
-	
+
 	@Override
 	public Mono<CustomerDocument> getByIdentity(String identity) {
 		return custRepo.findById(identity);
@@ -25,6 +25,22 @@ public class StandardCustomerReactiveService implements CustomerReactiveService 
 	@Override
 	public Flux<CustomerDocument> getCustomers(int page, int size) {
 		return custRepo.findAll(PageRequest.of(page, size));
+	}
+
+	@Override
+	public Mono<CustomerDocument> addCustomer(CustomerDocument customer) {
+		return custRepo.save(customer);
+	}
+
+	@Override
+	public Mono<CustomerDocument> updateCustomer(CustomerDocument customer) {
+		return custRepo.save(customer);
+	}
+
+	@Override
+	public Mono<CustomerDocument> removeByIdentity(String identity) {
+       return custRepo.findById(identity)
+    		   		  .doOnNext(custRepo::delete);
 	}
 
 }
